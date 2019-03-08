@@ -53,10 +53,10 @@ function sendJSONXMLHTTPRequest(url, objects, callback) {
     xhr.open("POST", url, true);
     //XXX: set the mimetype and the accept headers!
     // Remember to use application/json !
-    //do we need to consider that object is null????????
+    
     xhr.setRequestHeader("Content-type", "application/json");
     xhr.setRequestHeader("Accept", "application/json");
-    xhr.send(objects);
+    xhr.send(JSON.stringify(objects));
 }
 
 
@@ -146,7 +146,7 @@ function addEntity(entity, data) {
     //drawNextFrame(); // (but should we?)
     //XXX: Send a XHTML Request that updates the entity you just  modified!
     //??????????????
-    sendJSONXMLHTTPRequest("http://127.0.0.1:5000/entity/" + String(entity), JSON.stringify(data), function(data){drawCircle(context, data);});
+    sendJSONXMLHTTPRequest("http://127.0.0.1:5000/entity/" + String(entity), JSON.stringify(data), function(data){drawNextFrame();});
 
 }
 
@@ -256,15 +256,21 @@ mouse = (function() {
 // Add the application specific mouse listeners!
 //XXX: TODO Make these prettier!
 mouse.mousedowners.push(function(x,y,clicked,e) {
-    addEntityWithoutName({'x':x,'y':y,'colour':'#f7ea00', 'radius':25});
+    var list = ["#d10a0a","#f7ea00","#f8b8f9","#21afed","#ef7132","#8a5db7","#76b75d"];
+    var rcolor = list[Math.floor(Math.random()*list.length)];
+    addEntityWithoutName({'x':x,'y':y,'colour':rcolor, 'radius':25});
 });
 
 mouse.mouseuppers.push(function(x,y,clicked,e) {
-    addEntityWithoutName({'x':x,'y':y,'colour':'#f8b8f9', 'radius':25});
+    var list = ["#d10a0a","#f7ea00","#f8b8f9","#21afed","#ef7132","#8a5db7","#76b75d"];
+    var rcolor = list[Math.floor(Math.random()*list.length)];
+    addEntityWithoutName({'x':x,'y':y,'colour':rcolor, 'radius':25});
 });
 
 mouse.mousedraggers.push(function(x,y,clicked,e) {
-    addEntityWithoutName({'x':x,'y':y,'colour':'#f7ea00',
+    var list = ["#d10a0a","#f7ea00","#f8b8f9","#21afed","#ef7132","#8a5db7","#76b75d"];
+    var rcolor = list[Math.floor(Math.random()*list.length)];
+    addEntityWithoutName({'x':x,'y':y,'colour':rcolor,
                           'radius':6});
 });
 
