@@ -146,7 +146,7 @@ function addEntity(entity, data) {
     //drawNextFrame(); // (but should we?)
     //XXX: Send a XHTML Request that updates the entity you just  modified!
     //??????????????
-    sendJSONXMLHTTPRequest("http://127.0.0.1:5000/entity/" + String(entity), JSON.stringify(data), function(data){drawNextFrame();});
+    sendJSONXMLHTTPRequest("http://127.0.0.1:5000/entity/" + entity, data, function(data){drawNextFrame();});
 
 }
 
